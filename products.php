@@ -1,11 +1,12 @@
 <?php require_once __DIR__.'/function/cart.php';
 $products = getProduct();
 ?>
+<div id="message"></div>
 <div class="row mt-5 pb-5">
     <?php foreach ($products as $product):;?>
     <div class="col-lg-3">
         <div class="card-deck">
-            <div class="card p-2 border-secondary mb-2">
+            <div class="card p-2 mb-2">
                 <img class="img-fluid card-img-top" src="<?= $product['product_image'];?>">
                 <div class="card-body p-1">
                     <h5 class="card-title text-center text-info"><?= $product['product_name']; ?></h5>
@@ -15,7 +16,7 @@ $products = getProduct();
                     </h5>
                 </div>
                 <div class="card-footer p-2">
-                    <form action="" class="form-submit">
+                    <form class="form-submit">
                         <input type="hidden" class="productId" value="<?= $product['id'];?>">
                         <input type="hidden" class="productName" value="<?= $product['product_name'];?>">
                         <input type="hidden" class="productPrice" value="<?= $product['product_price'];?>">

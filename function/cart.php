@@ -12,6 +12,16 @@ function getProduct():array{
     }
    return $products;
 }
+function countProductsInCart():int{
+    $sql = "SELECT COUNT(id) FROM cart";
+    $cartResult = getDb()->prepare($sql);
+    if (false === $cartResult){
+        return 0;
+    }
+    $cartResult->execute();
+    $cartItems = $cartResult->fetchColumn();
+    return $cartItems;
+}
 function ifProductExist($productCode){
     $sql = "SELECT product_code FROM cart WHERE product_code= :productCode";
     $cartResult = getDb()->prepare($sql);

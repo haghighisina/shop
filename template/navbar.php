@@ -20,7 +20,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="#">
                     <i class="fas fa-shopping-basket">
-                        &ensp;<span id="cart-item" class="badge badge-success">1</span>
+                        &ensp;<span id="cart-item" class="badge badge-success"></span>
                     </i>
                 </a>
             </li>

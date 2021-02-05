@@ -18,11 +18,16 @@ if (isset($_POST['productId'])){
                   <button type="button" class="close" data-dismiss="alert">&times;</button>
                   <strong>Item added to your cart!</strong>
 			 </div>';
+
     }else{
         echo '<div class="alert alert-danger alert-dismissible mt-2">
                   <button type="button" class="close" data-dismiss="alert">&times;</button>
                   <strong>Item already added to your cart!</strong>
               </div>';
     }
+}
+if (isset($_GET['cartItem']) && isset($_GET['cartItem']) == 'cart_item'){
+    $products = countProductsInCart();
+    echo $products;
 }
 ?>
