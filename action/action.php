@@ -30,4 +30,18 @@ if (isset($_GET['cartItem']) && isset($_GET['cartItem']) == 'cart_item'){
     $products = countProductsInCart();
     echo $products;
 }
+if (isset($_GET['remove'])){
+    deleteItemFromCart($_GET['remove']);
+    $_SESSION['showAlert'] = 'block';
+    $_SESSION['message'] = 'Item removed from the cart!';
+    header('location:../cart.php');
+    exit();
+}
+if (isset($_GET['clear'])){
+    clearAllItemInCart();
+    $_SESSION['showAlert'] = 'block';
+    $_SESSION['message'] = 'All Item removed from the cart!';
+    header('location:../cart.php');
+    exit();
+}
 ?>

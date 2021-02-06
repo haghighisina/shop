@@ -18,7 +18,7 @@
                 <a class="nav-link" href="#">Checkout</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="cart.php">
                     <i class="fas fa-shopping-basket">
                         &ensp;<span id="cart-item" class="badge badge-success"></span>
                     </i>

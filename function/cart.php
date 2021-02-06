@@ -12,6 +12,19 @@ function getProduct():array{
     }
    return $products;
 }
+function getProductInCart():array{
+    $sql = "SELECT * FROM cart";
+    $result = getDb()->prepare($sql);
+    if (!$result){
+        return [];
+    }
+    $result->execute();
+    $products = [];
+    while ($row = $result->fetch()){
+        $products[] = $row;
+    }
+    return $products;
+}
 function countProductsInCart():int{
     $sql = "SELECT COUNT(id) FROM cart";
     $cartResult = getDb()->prepare($sql);
@@ -53,6 +66,17 @@ function insertDataIntoCart(string $productName,string $productPrice,string $pro
         ':productCode' => $productCode
     ];
     $statement->execute($data);
+}
+function deleteItemFromCart(int $product):int{
+    $sql = "DELETE FROM cart WHERE id= :ProductId";
+    $statement = getDb()->prepare($sql);
+    if ($statement === false){return 0;}
+    return (int)$statement->execute([':ProductId' => $product]);
+}
+function clearAllItemInCart(){
+    $sql = "DELETE FROM cart";
+    $statement = getDb()->prepare($sql);
+    $statement->execute();
 }
 
 
