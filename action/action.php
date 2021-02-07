@@ -1,4 +1,4 @@
-<?php
+<?php session_start();
 require_once __DIR__.'/../function/database.php';
 require_once __DIR__.'/../function/cart.php';
 if (isset($_POST['productId'])){
@@ -34,14 +34,24 @@ if (isset($_GET['remove'])){
     deleteItemFromCart($_GET['remove']);
     $_SESSION['showAlert'] = 'block';
     $_SESSION['message'] = 'Item removed from the cart!';
-    header('location:../cart.php');
+    header('location: ../cart.php');
     exit();
 }
 if (isset($_GET['clear'])){
     clearAllItemInCart();
     $_SESSION['showAlert'] = 'block';
     $_SESSION['message'] = 'All Item removed from the cart!';
-    header('location:../cart.php');
+    header('location: ../cart.php');
+    exit();
+}
+if (isset($_POST['itemQuantity'])){
+    $product_quantity = filter_input(INPUT_POST,'itemQuantity',FILTER_VALIDATE_INT);
+    $product_id = filter_input(INPUT_POST,'product_id',FILTER_VALIDATE_INT);
+    $product_price = filter_input(INPUT_POST,'product_price',FILTER_VALIDATE_INT);
+    $total_price = $product_quantity * $product_price;
+
+    updateCartItemQuantity($product_quantity, $total_price, $product_id);
+    header('location: ../cart.php');
     exit();
 }
 ?>

@@ -35,7 +35,7 @@ function countProductsInCart():int{
     $cartItems = $cartResult->fetchColumn();
     return $cartItems;
 }
-function ifProductExist($productCode){
+function ifProductExist($productCode):int{
     $sql = "SELECT product_code FROM cart WHERE product_code= :productCode";
     $cartResult = getDb()->prepare($sql);
     if (false === $cartResult) {
@@ -78,6 +78,17 @@ function clearAllItemInCart(){
     $statement = getDb()->prepare($sql);
     $statement->execute();
 }
+function updateCartItemQuantity(int $quantity, int $total_price, int $product_id):int{
+    $sql = "UPDATE cart SET quantity= :Quantity, total_price= :totalPrice WHERE id= :ID";
+    $statement = getDb()->prepare($sql);
+    $data = [
+        ':Quantity'=>$quantity,
+        ':totalPrice'=>$total_price,
+        ':ID'=>$product_id
+    ];
+   return $statement->execute($data);
+}
+
 
 
 

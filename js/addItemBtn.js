@@ -7,9 +7,7 @@ $(".addItemBtn").click(function(e) {
     var productPrice = $form.find(".productPrice").val();
     var productImage = $form.find(".productImage").val();
     var productCode = $form.find(".productCode").val();
-    $.ajax({
-        url: 'action/action.php',
-        method: 'post',
+    $.ajax({ url: 'action/action.php', method: 'post',
         data: {productId: productId, productName: productName, productPrice: productPrice, productImage: productImage, productCode: productCode},
         success:function(result) {
             $("#message").html(result);

@@ -14,8 +14,8 @@ $total_price = 0;
                 <strong><?php if (isset($_SESSION['message'])){echo $_SESSION['message'];} unset($_SESSION['showAlert']); ?></strong>
             </div>
             <div class="table-responsive mt-5">
-                <table class="table table-bordered table-striped text-center">
-                   <thead>
+                <table class="table table-bordered table-dark table-borderless text-center">
+                   <thead class="thead-light">
                    <tr>
                        <td colspan="7">
                            <h5 class="text-center text-info m-0">All The Products In Cart</h5>
@@ -35,12 +35,13 @@ $total_price = 0;
                     <?php foreach ($products as $product):;?>
                         <tr>
                             <td><?= $product['id'];?></td>
+                            <input type="hidden" class="product_id" value="<?= $product['id'];?>">
                             <td><?= $product['product_name'];?></td>
                             <td><img src="<?= $product['product_image'];?>" width="50"></td>
-                            <td><i class="fas fa-dollar-sign"></i> <?= $product['product_price'];?></td>
+                            <td><i class="fas fa-dollar-sign"></i> <?= number_format($product['product_price'],2);?></td>
                             <td style="width: 75px;">
-                                <input type="number" class="form-control w-100 itemQuantity"
-                                value="<?= $product['quantity'];?>">
+                                <input type="hidden" class="product_price" value="<?= $product['product_price'];?>">
+                                <input type="number" class="form-control w-100 itemQuantity " value="<?= $product['quantity'];?>">
                             </td>
                             <td><i class="fas fa-dollar-sign"></i> <?= number_format($product['total_price'],2);?></td>
                             <td>
