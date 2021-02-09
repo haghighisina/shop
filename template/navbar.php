@@ -15,7 +15,7 @@
                 <a class="nav-link" href="#">Categories</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Checkout</a>
+                <a class="nav-link" href="checkout.php">Checkout</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="cart.php">

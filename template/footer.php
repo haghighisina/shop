@@ -3,5 +3,6 @@
 <script src="js/addItemBtn.js"></script>
 <script src="js/cartItems.js"></script>
 <script src="js/quantity.js"></script>
+<script src="js/submitForm.js"></script>
 </body>
 </html>

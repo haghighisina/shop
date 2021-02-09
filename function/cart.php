@@ -1,4 +1,5 @@
 <?php
+/** @noinspection ALL */
 function getProduct():array{
     $sql = "SELECT * FROM product";
     $result = getDb()->prepare($sql);
@@ -35,7 +36,7 @@ function countProductsInCart():int{
     $cartItems = $cartResult->fetchColumn();
     return $cartItems;
 }
-function ifProductExist($productCode):int{
+function ifProductExist(string $productCode):string{
     $sql = "SELECT product_code FROM cart WHERE product_code= :productCode";
     $cartResult = getDb()->prepare($sql);
     if (false === $cartResult) {
@@ -88,8 +89,38 @@ function updateCartItemQuantity(int $quantity, int $total_price, int $product_id
     ];
    return $statement->execute($data);
 }
-
-
+function calculateAllProductsInCart(){
+    $grand_total = 0;
+    $sql = "SELECT CONCAT(product_name, '(',quantity,')') AS item_quantity, total_price FROM cart";
+    $statement = getDb()->prepare($sql);
+    $statement->execute();
+    while ($row = $statement->fetch()){
+        $grand_total += $row['total_price'];
+        $item[] = $row['item_quantity'];
+    }
+    return array('price'=>$grand_total,'item'=>$item);
+}
+function orderPayment(string $name,string $email, string $phone,string $address,string $payment,string $products, string $totalPrice){
+    $sql = "INSERT INTO orders SET
+            name= :Name,
+            email= :Email,
+            phone= :Phone,
+            address= :Address,
+            payment_mode= :Payment,
+            products= :Products,
+            amount_paid= :Amount";
+    $statement = getDb()->prepare($sql);
+    $data = [
+        ':Name' => $name,
+        ':Email' => $email,
+        ':Phone' => $phone,
+        ':Address' => $address,
+        ':Payment' => $payment,
+        ':Products' => $products,
+        ':Amount' => $totalPrice
+    ];
+    $statement->execute($data);
+}
 
 
 

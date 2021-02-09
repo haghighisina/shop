@@ -64,7 +64,7 @@ $total_price = 0;
                             <b><?= number_format($total_price,2);?></b>
                         </td>
                         <td>
-                            <a href="chekcout.php" class="btn btn-info <?= ($total_price)>1 ? '' : 'disabled';?>">
+                            <a href="checkout.php" class="btn btn-info <?= ($total_price)>1 ? '' : 'disabled';?>">
                                 <i class="far fa-credit-card"></i> Credit
                             </a>
                         </td>
