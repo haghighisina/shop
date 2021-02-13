@@ -64,7 +64,7 @@ if (isset($_POST['itemQuantity'])){
 }
 if (isset($_POST['action']) && isset($_POST['action']) == 'order'){
     $name = filter_input(INPUT_POST,'name',FILTER_SANITIZE_SPECIAL_CHARS);
-    $email = filter_input(INPUT_POST,'email',FILTER_SANITIZE_SPECIAL_CHARS);
+    $email = filter_input(INPUT_POST,'email',FILTER_SANITIZE_EMAIL);
     $phone = filter_input(INPUT_POST,'phone',FILTER_SANITIZE_SPECIAL_CHARS);
     $address = filter_input(INPUT_POST,'address',FILTER_SANITIZE_SPECIAL_CHARS);
     $products = filter_input(INPUT_POST,'product',FILTER_SANITIZE_SPECIAL_CHARS);
